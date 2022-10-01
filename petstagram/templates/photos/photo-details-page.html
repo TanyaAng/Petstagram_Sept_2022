@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base/base.html' %}
 {% load static %}
 {% block base_content %}
     <div class="container">
@@ -12,7 +12,7 @@
                     <div class="userDetails">
 
                         <!-- Link to User Profile Details Page-->
-                        <a href="#">
+                        <a href="{% url 'profile details' pk=1 %}">
                             <div class="profilepic">
                                 <div class="profile_img">
                                     <div class="image">
@@ -24,7 +24,7 @@
                         <h3>
 
                             <!-- Link to User Profile Details Page -->
-                            <a href="#">
+                            <a href="{% url 'profile details' pk=1 %}">
                                 <!-- IF user has first name and last name -->
                                 Diyan Kalaydzhiev
                                 <!-- else -->
@@ -39,13 +39,13 @@
                             <div class="edit-delete-btns">
 
                                 <!-- Link to Edit Pet Photo Page -->
-                                <a href="#">
+                                <a href="{% url 'photo edit' pk=1 %}">
                                     <img class="edit-img" src="{% static 'images/edit-pen-icon-6.jpg' %}"
                                          alt="edit button">
                                 </a>
 
                                 <!-- Link to Delete Pet Photo Page -->
-                                <a href="#">
+                                <a href="{% url 'photo edit' pk=1 %}">
                                     <img class="bin-img" src="{% static 'images/icon-remove-22.jpg' %}" alt="bin button">
                                 </a>
                             </div>

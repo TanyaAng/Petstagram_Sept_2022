@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base/base.html' %}
 {% load static %}
 {% block base_content %}
 
@@ -18,11 +18,11 @@
                         <!-- Pet Name -->
                         <p>Sasho</p>
                         <!-- Pet Edit Button -->
-                        <a href="">
+                        <a href="{% url 'pet edit' username='Tanya' pet_name='Pesho' %}">
                             <img class="edit-img" src="{% static 'images/edit-pen-icon-6.jpg' %}" alt="edit button">
                         </a>
                         <!-- Pet Delete Button -->
-                        <a href="">
+                        <a href="{% url 'pet delete' username='Tanya' pet_name='Pesho' %}">
                             <img class="bin-img" src="{% static 'images/icon-remove-22.jpg' %}" alt="bin button">
                         </a>
                     </div>
@@ -45,7 +45,7 @@
                 <div class="top">
                     <!-- User Details and image location -->
                     <div class="userDetails">
-                        <a href="profile details">
+                        <a href="{% url 'profile details' pk=1 %}">
                             <div class="profilepic">
                                 <div class="profile_img">
                                     <div class="image">
@@ -55,7 +55,7 @@
                             </div>
                         </a>
                         <h3>
-                            <a href="profile details">
+                            <a href="{% url 'profile details' pk=1 %}">
                                 <!-- if user has first name and last name -->
                                 Diyan Kalaydzhiev
                                 <!-- else -->
@@ -143,12 +143,12 @@
                     </a>
 
                     <!-- tagged pets -->
-                    <a href="pet profile">
+                    <a href="{% url 'pet details' username='Tanya' pet_name='Pesho' %}">
                         <p class="message">
                             <b>Sasho</b>
                         </p>
                     </a>
-                    <a href="pet profile">
+                    <a href="{% url 'pet details' username='Tanya' pet_name='Pesho' %}">
                         <p class="message">
                             <b>Some other fish</b>
                         </p>
@@ -185,7 +185,7 @@
                 <div class="top">
                     <!-- User Details and image location -->
                     <div class="userDetails">
-                        <a href="profile details">
+                        <a href="{% url 'profile details' pk=1 %}">
                             <div class="profilepic">
                                 <div class="profile_img">
                                     <div class="image">
@@ -195,7 +195,7 @@
                             </div>
                         </a>
                         <h3>
-                            <a href="profile details">
+                            <a href="{% url 'profile details' pk=1 %}">
                                 <!-- if user has first name and last name -->
                                 Diyan Kalaydzhiev
                                 <!-- else -->
@@ -284,12 +284,12 @@
                     </a>
 
                     <!-- tagged pets -->
-                    <a href="pet profile">
+                    <a href="{% url 'pet details' username='Tanya' pet_name='Pesho' %}">
                         <p class="message">
                             <b>Sasho</b>
                         </p>
                     </a>
-                    <a href="pet profile">
+                    <a href="{% url 'pet details' username='Tanya' pet_name='Pesho' %}">
                         <p class="message">
                             <b>Some other fish</b>
                         </p>
