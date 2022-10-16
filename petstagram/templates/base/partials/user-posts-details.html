@@ -1,0 +1,48 @@
+{% load static %}
+<!-- Start User Details and Image Location -->
+<div class="top">
+    <div class="userDetails">
+        <!-- Link to User Profile Page -->
+        <a href="{% url 'profile details' pk=1 %}">
+            <div class="profilepic">
+                <div class="profile_img">
+                    <div class="image">
+                        <img src="{% static 'images/person.png' %}" alt="img8">
+                    </div>
+                </div>
+            </div>
+        </a>
+        <h3>
+
+            <!-- Link to User Profile Details Page -->
+            <a href="{% url 'profile details' pk=1 %}">
+                <!-- IF user has first name and last name -->
+                Diyan Kalaydzhiev
+                <!-- else -->
+                <!-- show user username -->
+            </a>
+            <br>
+
+            <!-- IF the photo has location -->
+            <span>{{ photo.location }}</span>
+
+            <!-- IF the viewer is the creator of the photo -->
+            <div class="edit-delete-btns">
+
+                <!-- Link to Edit Pet Photo Page -->
+                <a href="{% url 'photo edit' pk=1 %}">
+                    <img class="edit-img" src="{% static 'images/edit-pen-icon-6.jpg' %}"
+                         alt="edit button">
+                </a>
+
+                <!-- Link to Delete Pet Photo Page -->
+                <a href="{% url 'photo edit' pk=1 %}">
+                    <img class="bin-img" src="{% static 'images/icon-remove-22.jpg' %}" alt="bin button">
+                </a>
+            </div>
+            <!-- End IF the viewer is the creator of the photo -->
+        </h3>
+
+    </div>
+</div>
+    <!-- End User Details and Image Location Section -->

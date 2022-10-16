@@ -9,6 +9,7 @@ def index(request):
     photos = PhotoModel.objects.all()
     context = {
         'photos': photos,
+        'show_comments':False,
     }
     return render(request, 'common/home-page.html', context)
 
