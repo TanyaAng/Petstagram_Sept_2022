@@ -1,0 +1,8 @@
+{% load static %}
+<form class="searchbar" method="post">
+    {{ search_form }}
+    {% csrf_token %}
+    <button>
+        <img src="{% static 'images/search.png' %}" height="18" alt="img2">
+    </button>
+</form>

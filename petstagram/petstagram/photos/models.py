@@ -11,6 +11,7 @@ class PhotoModel(models.Model):
     DESCRIPTION_MIN_LENGTH = 10
 
     photo = models.ImageField(
+        upload_to='pet_photos/',
         validators=(max_file_size_validator_to_5MB,)
     )
 

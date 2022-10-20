@@ -1,0 +1,17 @@
+<!-- Start Add Comments Section -->
+<div class="addComments">
+    <div class="reaction">
+        <h3>
+            <i class="far fa-smile"></i>
+        </h3>
+    </div>
+    <!-- Start Add Comments Form -->
+    <form method="post" action="{% url 'comment photo' photo_id=photo.pk %}">
+        {{ comment_form }}
+        {% csrf_token %}
+        <button type="submit">Post</button>
+    </form>
+    <!-- End Add Comments Form -->
+
+</div>
+<!-- End Add Comments Section -->

@@ -1,10 +1,9 @@
 {% load static %}
-<!-- Start First Pet Photo Post -->
-<!-- Start Pet Photo -->
+
 <div class="imgBx" id="{{ photo.id }}">
-    <img src="{% static 'images/axolotl.jpeg' %}" alt="post" class="cover">
+    <img src="{{ photo.photo.url }}" alt="{{ photo.description }}" class="cover">
 </div>
-<!-- End Pet Photo -->
+
 
 <!-- Start Like and Share Buttons -->
 <div class="bottom">
@@ -84,7 +83,7 @@
     <!-- Start Tagged Pets -->
     {% for pet in photo.tagged_pets.all %}
         <!-- Link to First Tagged Pet Details Page-->
-        <a href="{% url 'pet details' username='Tanya' pet_slug=pet.slug %}">
+        <a href="{% url 'pet details' username=username pet_slug=pet.slug %}">
             <p class="message">
                 <b>{{ pet.name }}</b>
             </p>
@@ -100,13 +99,9 @@
     <h5 class="postTime">{{ photo.date_of_publication }}</h5>
 
     {% if show_comments %}
-        {% include 'base/partials/show_comments.html' %}
+        {% include 'base/partials/comment-show.html' %}
     {% endif %}
 
-    {% include 'base/partials/add-comment_form.html' %}
+    {% include 'base/partials/comment-create-form.html' %}
 
 </div>
-
-<!-- End First Pet Photo Post -->
-
-<!-- End Pet Photos Post Section -->
