@@ -8,14 +8,16 @@
 
             <!-- Start Login Form-->
             <form method='POST' action="{% url 'login' %}">
-                <p>
-                    <label for="id_username">Username:</label>
-                    <input type="text" placeholder="Username">
-                </p>
-                <p>
-                    <label for="id_password">Password:</label>
-                    <input type="password" placeholder="Password">
-                </p>
+                {{ form }}
+                {% csrf_token %}
+                {#                <p>#}
+                {#                    <label for="id_username">Username:</label>#}
+                {#                    <input type="text" placeholder="Username">#}
+                {#                </p>#}
+                {#                <p>#}
+                {#                    <label for="id_password">Password:</label>#}
+                {#                    <input type="password" placeholder="Password">#}
+                {#                </p>#}
 
                 <!-- Login Button-->
                 <button type="submit">Log in</button>

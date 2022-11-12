@@ -1,6 +1,8 @@
 import os
 from pathlib import Path
 
+from django.urls import reverse_lazy
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-du60fidw&7hq4x_!w&40yb@5$g!wq^6+r9d)#=^5wst9b+n5q2'
@@ -102,7 +104,13 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [BASE_DIR / 'staticfiles']
 
-MEDIA_ROOT = os.path.join(BASE_DIR / 'mediafiles/')
 MEDIA_URL = '/media/'
 
+MEDIA_ROOT = os.path.join(BASE_DIR / 'mediafiles/')
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL='accounts.PetstagramUser'
+
+LOGIN_URL = reverse_lazy('login')
+# LOGOUT_REDIRECT_URL=reverse_lazy('login')
