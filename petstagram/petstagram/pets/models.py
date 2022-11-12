@@ -1,6 +1,8 @@
+from django.contrib.auth import get_user_model
 from django.db import models
 from django.template.defaultfilters import slugify
 
+UserModel=get_user_model()
 
 class Pet(models.Model):
     NAME_MAX_LENGTH=30
@@ -14,6 +16,8 @@ class Pet(models.Model):
     )
 
     slug=models.SlugField(unique=True, editable=False)
+
+    user=models.ForeignKey(to=UserModel, on_delete=models.CASCADE)
 
     #generate slug automatically
     def save(self, *args, **kwargs):

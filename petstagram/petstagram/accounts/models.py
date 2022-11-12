@@ -43,3 +43,10 @@ class PetstagramUser(auth_models.AbstractUser):
         max_length=Gender.max_len(),
         choices=Gender.choices(),
     )
+
+    @property
+    def full_name(self):
+        if self.first_name and self.last_name:
+            return f"{self.first_name} {self.last_name}"
+        elif self.first_name or self.last_name:
+            return self.first_name or self.last_name

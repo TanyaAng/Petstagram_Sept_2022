@@ -1,8 +1,11 @@
+from django.contrib.auth import get_user_model
 from django.db import models
 from django.core.validators import MinLengthValidator
 
 from petstagram.pets.models import Pet
 from petstagram.photos.validators import max_file_size_validator_to_5MB
+
+UserModel = get_user_model()
 
 
 class PhotoModel(models.Model):
@@ -27,11 +30,11 @@ class PhotoModel(models.Model):
         null=True,
         blank=True,
     )
+    date_of_publication = models.DateField(
+        auto_now=True,
+    )
+    user = models.ForeignKey(to=UserModel, on_delete=models.CASCADE)
 
     tagged_pets = models.ManyToManyField(Pet,
                                          blank=True,
                                          )
-
-    date_of_publication = models.DateField(
-        auto_now=True,
-    )

@@ -8,12 +8,16 @@ def photo_details(request, pk):
     photo = PhotoModel.objects.filter(pk=pk).get()
     likes = photo.like_set.all()
     comments = photo.comment_set.all()
+    is_liked_by_user = likes.filter(user=request.user)
     context = {
         'photo': photo,
         'likes': likes,
-        'username': 'Tanya',
+
         'comments': comments,
+        'is_liked_by_user': is_liked_by_user,
+
         'show_comments': True,
+        'hide_comment_form': True,
     }
     return render(request, 'photos/photo-details-page.html', context)
 
@@ -24,7 +28,10 @@ def photo_create(request):
     else:
         form = CreatePhotoForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            photo = form.save(commit=False)
+            photo.user = request.user
+            photo.save()
+            # photo.savem2m()
             return redirect('index')
     context = {
         'form': form,

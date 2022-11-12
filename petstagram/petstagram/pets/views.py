@@ -11,6 +11,7 @@ def pet_details(request, username, pet_slug):
         'pet': pet,
         'pet_photos': all_pet_photos,
         'username': username,
+        'hide_comment_form': True,
 
     }
     return render(request, 'pets/pet-details-page.html', context)
@@ -22,8 +23,10 @@ def pet_create(request):
     else:
         form = CreatePetForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('profile details', pk=1)
+            pet = form.save(commit=False)
+            pet.user = request.user
+            pet.save()
+            return redirect('profile details', pk=request.user.pk)
 
     context = {
         'form': form,
@@ -32,8 +35,7 @@ def pet_create(request):
 
 
 def pet_edit(request, username, pet_slug):
-    # TODO: use username when auth
-    pet = Pet.objects.filter(slug=pet_slug).get()
+    pet = Pet.objects.filter(slug=pet_slug, user__username=username).get()
     if request.method == 'GET':
         form = EditPetForm(instance=pet)
     else:
@@ -51,14 +53,14 @@ def pet_edit(request, username, pet_slug):
 
 
 def pet_delete(request, username, pet_slug):
-    pet = Pet.objects.filter(slug=pet_slug).get()
+    pet = Pet.objects.filter(slug=pet_slug, user__username=username).get()
     if request.method == 'GET':
         form = DeletePetForm(instance=pet)
     else:
         form = DeletePetForm(request.POST, instance=pet)
         if form.is_valid():
             form.save()
-            return redirect('profile details', pk=1)
+            return redirect('profile details', pk=request.user.pk)
 
     context = {
         'form': form,

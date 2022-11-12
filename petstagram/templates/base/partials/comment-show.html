@@ -8,16 +8,18 @@
                     <div class="profilepic">
                         <div class="profile_img">
                             <div class="image">
-                                <!-- User Profile Image -->
                                 <img src="{% static 'images/person.png' %}" alt="img8">
                             </div>
                         </div>
                     </div>
                     <p>
-                        <!-- Link to User Profile Details Page-->
-                        <!-- User First and/or Last Name or username-->
-                        <a href="">Steven Ivanov</a>
-                        <!-- User Comment -->
+
+                        {% if comment.user.full_name %}
+                        <a href="">{{ comment.user.full_name }}</a>
+                        {% else %}
+                        {{ comment.user.username }}
+                        {% endif %}
+
                         {{ comment.text }}
                     </p>
                 </div>

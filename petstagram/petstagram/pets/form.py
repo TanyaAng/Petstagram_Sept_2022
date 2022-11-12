@@ -8,6 +8,7 @@ class BasePetForm(forms.ModelForm):
     class Meta:
         model = Pet
         fields = ('name', 'date_of_birth', 'personal_photo')
+        exclude = ('user',)
 
         labels = {
             'name': 'Pet name',
@@ -40,6 +41,4 @@ class DeletePetForm(DisableFormMixin, BasePetForm):
     def save(self, commit=True):
         if commit:
             self.instance.delete()
-        else:
-            pass
         return self.instance

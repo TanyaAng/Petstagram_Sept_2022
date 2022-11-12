@@ -4,11 +4,8 @@
     <div class="container">
         <div class="col-9">
 
-            <!-- Start Searchbar Form -->
             {% include 'base/partials/search-bar.html' %}
-            <!-- End Searchbar Form -->
 
-            <!-- Start Pet Photos Post Section -->
             {% for photo in photos %}
                 <div class="card">
                     {% include 'base/partials/user-posts-details.html' %}

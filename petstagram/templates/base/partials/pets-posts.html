@@ -4,15 +4,13 @@
     <img src="{{ photo.photo.url }}" alt="{{ photo.description }}" class="cover">
 </div>
 
-
-<!-- Start Like and Share Buttons -->
 <div class="bottom">
     <div class="actionBtns">
         <div class="left">
             <!-- Start Like Button -->
             <span class="heart">
 									<a href="{% url 'like' photo.id %}">
-										{% if photo.like_set.all %}
+										{% if photo.id in liked_photos %}
                                             <svg style="color: red"
                                                  xmlns="http://www.w3.org/2000/svg"
                                                  width="24"
@@ -28,7 +26,6 @@
 
                                             </path>
                                         </svg>
-                                            <!-- else -->
                                         {% else %}
                                             <svg aria-label="Like"
                                                  color="#262626"
@@ -38,7 +35,7 @@
                                                  viewBox="0 0 48 48"
                                                  width="24">
                                         {% endif %}
-                                        <!-- Coordinate path -->
+
                                         <path d="M34.6 6.1c5.7 0 10.4 5.2 10.4
                                                     11.5 0 6.8-5.9 11-11.5 16S25 41.3 24
                                                     41.9c-1.1-.7-4.7-4-9.5-8.3-5.7-5-11.5-9.2-11.5-16C3
@@ -55,9 +52,7 @@
                                         </svg>
 								</a>
 								</span>
-            <!-- End Like Button -->
 
-            <!-- Start Share Button -->
             <a href="{% url 'share' photo.id %}">
                 <svg aria-label="Share Post" class="_8-yf5 " color="#262626" fill="#262626"
                      height="24" role="img" viewBox="0 0 48 48" width="24">
@@ -70,20 +65,17 @@
                     </path>
                 </svg>
             </a>
-            <!-- End Share Button -->
+
 
         </div>
     </div>
-    <!-- End Like and Share Buttons -->
+
 
     <!-- Number of Likes per Photo -->
     <p class="likes">{{ photo.like_set.count }}</p>
 
-
-    <!-- Start Tagged Pets -->
     {% for pet in photo.tagged_pets.all %}
-        <!-- Link to First Tagged Pet Details Page-->
-        <a href="{% url 'pet details' username=username pet_slug=pet.slug %}">
+        <a href="{% url 'pet details' username=pet.user.username pet_slug=pet.slug %}">
             <p class="message">
                 <b>{{ pet.name }}</b>
             </p>
@@ -101,7 +93,8 @@
     {% if show_comments %}
         {% include 'base/partials/comment-show.html' %}
     {% endif %}
-
-    {% include 'base/partials/comment-create-form.html' %}
+    {% if not hide_comment_form %}
+        {% include 'base/partials/comment-create-form.html' %}
+    {% endif %}
 
 </div>
